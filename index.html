@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>build.create | Tanay Paliwal</title>
+<meta name="description" content="Tanay Paliwal, 14, from Goa, India. Founder of build.create. Building apps, learning investing, playing football.">
+<meta name="theme-color" content="#f1f0ee">
+<link rel="icon" href="logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f1f0ee;--ink:#1c1b1a;--mute:#6d6b67;--line:#d9d7d3}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'Archivo',system-ui,Arial,sans-serif;line-height:1.55;overflow-x:hidden}
+body.fine,body.fine a,body.fine button{cursor:none}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+.wide{font-stretch:125%;font-variation-settings:"wdth" 125;font-weight:800;text-transform:uppercase;letter-spacing:.01em}
+/* the cursor lens: a white disc that inverts whatever is under it */
+#lens{position:fixed;left:0;top:0;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;background:#fff;mix-blend-mode:difference;pointer-events:none;z-index:999;transform:translate(-100px,-100px) scale(0);transition:width .25s,height .25s,margin .25s,opacity .2s;will-change:transform}
+#lens.big{width:260px;height:260px;margin:-130px 0 0 -130px}
+#lens.off{opacity:0}
+/* grain */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:998;opacity:.06;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+/* nav */
+header{position:fixed;top:0;left:0;right:0;z-index:50;background:linear-gradient(var(--paper),rgba(241,240,238,0))}
+.bar{display:flex;justify-content:space-between;align-items:center;height:68px}
+.mark{font-size:1rem;text-decoration:none}
+nav{display:flex;gap:26px;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+nav a{text-decoration:none}
+nav a:hover{text-decoration:underline;text-underline-offset:6px}
+@media(max-width:700px){nav a:not(.keep){display:none}}
+/* hero */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding:90px 0 40px;text-align:center}
+#sun{display:block;width:min(560px,78vw);height:auto;aspect-ratio:2/1.02}
+.hero h1{font-size:clamp(1.9rem,8.7vw,7.6rem);line-height:1;border-top:3px solid var(--ink);padding-top:.12em;margin-top:-1px;white-space:nowrap}
+.hero .meta{margin-top:26px;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;line-height:1.7}
+.hero .tag{margin:20px auto 0;max-width:560px;color:var(--mute);font-size:1.05rem}
+.hint{margin-top:26px;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+/* marquee */
+.marq{border-block:2px solid var(--ink);overflow:hidden;white-space:nowrap;padding:14px 0}
+.marq div{display:inline-block;animation:m 28s linear infinite;font-size:clamp(1.1rem,3vw,1.9rem)}
+.marq span{margin:0 22px}
+@keyframes m{to{transform:translateX(-50%)}}
+section{padding:110px 0}
+.eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);margin-bottom:18px}
+h2{font-size:clamp(2rem,5.4vw,4.2rem);line-height:1.02;margin-bottom:30px}
+/* about */
+.about{display:grid;grid-template-columns:5fr 6fr;gap:60px;align-items:center}
+@media(max-width:820px){.about{grid-template-columns:1fr;gap:34px}}
+.photo{position:relative;border:3px solid var(--ink);padding:10px;background:var(--paper);transform:rotate(-1.6deg);transition:transform .4s}
+.photo:hover{transform:rotate(0)}
+.photo img{display:block;width:100%;height:auto;filter:grayscale(.15) contrast(1.03)}
+.photo figcaption{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin-top:10px;display:flex;justify-content:space-between}
+.about p{font-size:1.12rem;margin-bottom:18px;max-width:560px}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:34px;border:2px solid var(--ink)}
+.facts div{padding:18px 14px;border-right:2px solid var(--ink)}
+.facts div:last-child{border:0}
+.facts b{display:block;font-size:clamp(1.6rem,4vw,2.5rem);line-height:1}
+.facts small{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--mute)}
+/* interests */
+.tri{display:grid;grid-template-columns:repeat(3,1fr);border:2px solid var(--ink)}
+@media(max-width:820px){.tri{grid-template-columns:1fr}}
+.tri article{padding:34px 28px 38px;border-right:2px solid var(--ink);min-height:300px;display:flex;flex-direction:column;justify-content:space-between;transition:background .3s}
+.tri article:last-child{border:0}
+@media(max-width:820px){.tri article{border-right:0;border-bottom:2px solid var(--ink);min-height:0;gap:40px}.tri article:last-child{border-bottom:0}}
+.tri .n{font-size:.8rem;font-weight:700;letter-spacing:.2em}
+.tri h3{font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.05;margin-bottom:12px}
+.tri p{color:var(--mute);font-size:.98rem}
+/* projects */
+.projects{display:grid;gap:0;border-top:2px solid var(--ink)}
+.proj{display:grid;grid-template-columns:70px 1fr auto;gap:20px;align-items:center;padding:30px 4px;border-bottom:2px solid var(--ink);text-decoration:none;transition:padding .3s}
+.proj:hover{padding-left:18px}
+.proj .i{font-weight:700;letter-spacing:.14em;font-size:.85rem}
+.proj h3{font-size:clamp(1.4rem,3.6vw,2.6rem);line-height:1.05}
+.proj p{color:var(--mute);margin-top:6px;max-width:620px}
+.proj .go{font-size:2rem;transition:transform .3s}
+.proj:hover .go{transform:translate(6px,-6px)}
+@media(max-width:600px){.proj{grid-template-columns:1fr auto}.proj .i{grid-column:1/-1}}
+.note{margin-top:18px;font-size:.82rem;color:var(--mute);max-width:640px}
+/* journey */
+.steps{list-style:none;border-left:2px solid var(--ink);margin-left:8px}
+.steps li{position:relative;padding:0 0 38px 34px}
+.steps li::before{content:"";position:absolute;left:-9px;top:6px;width:16px;height:16px;border-radius:50%;background:var(--ink)}
+.steps b{display:block;font-size:1.25rem}
+.steps span{color:var(--mute)}
+/* contact */
+.contact{background:var(--ink);color:var(--paper)}
+.contact .eyebrow{color:#a8a6a1}
+.contact h2{font-size:clamp(2.2rem,7vw,5.6rem)}
+.btn{display:inline-block;border:2px solid var(--paper);padding:16px 30px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.85rem;text-decoration:none;transition:background .25s,color .25s}
+.btn:hover{background:var(--paper);color:var(--ink)}
+footer{padding:50px 0 40px;text-align:center;font-size:.8rem;color:var(--mute)}
+footer img{width:min(260px,60vw);display:block;margin:0 auto 20px;mix-blend-mode:multiply}
+/* reveal */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .8s,transform .8s}
+.rv.in{opacity:1;transform:none}
+@media(hover:none){.hint{display:none}}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.marq div{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div id="lens" aria-hidden="true"></div>
+
+<header>
+  <div class="wrap bar">
+    <a class="mark wide" href="#top">build.create</a>
+    <nav aria-label="Main">
+      <a href="#about">About</a><a href="#interests">Interests</a><a href="#projects">Apps</a><a href="#journey">Journey</a>
+      <a class="keep" href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" style="padding-top:90px">
+    <canvas id="sun" width="1120" height="572" role="img" aria-label="build.create logo: a grainy half sun"></canvas>
+    <h1 class="wide">build.create</h1>
+    <p class="meta">India<br>Est 2026</p>
+    <p class="tag">Hi, I'm Tanay. I'm 14, I live in Goa, and I build apps.</p>
+    <p class="hint">Move your cursor around &darr;</p>
+  </section>
+
+  <div class="marq wide" aria-hidden="true"><div>
+    <span>Apps</span>●<span>Investing</span>●<span>Football</span>●<span>Goa</span>●<span>Build</span>●<span>Create</span>●
+    <span>Apps</span>●<span>Investing</span>●<span>Football</span>●<span>Goa</span>●<span>Build</span>●<span>Create</span>●
+    <span>Apps</span>●<span>Investing</span>●<span>Football</span>●<span>Goa</span>●<span>Build</span>●<span>Create</span>●
+    <span>Apps</span>●<span>Investing</span>●<span>Football</span>●<span>Goa</span>●<span>Build</span>●<span>Create</span>●
+  </div></div>
+
+  <section id="about"><div class="wrap about">
+    <figure class="photo rv" data-nolens>
+      <img src="photo.jpg" alt="Tanay Paliwal, smiling, wearing glasses and a blue shirt" width="900" height="1171">
+      <figcaption><span>Tanay Paliwal</span><span>Goa, India</span></figcaption>
+    </figure>
+    <div class="rv">
+      <p class="eyebrow">About me</p>
+      <h2 class="wide">A 14 year old with big plans.</h2>
+      <p>I'm Tanay Paliwal, founder of build.create. I study at <b>Sunshine Worldwide School in Goa</b>, and outside class I'm an entrepreneur who builds apps and websites.</p>
+      <p>I'm fascinated by investments and how the stock market works, so I built my own stock tracker. When I'm not coding, I'm playing or watching football.</p>
+      <p>I started building six months ago and I learn something new with every project.</p>
+      <div class="facts">
+        <div><b>14</b><small>Years old</small></div>
+        <div><b>6</b><small>Months building</small></div>
+        <div><b>3</b><small>Projects live</small></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section id="interests" style="padding-top:20px"><div class="wrap">
+    <p class="eyebrow rv">What drives me</p>
+    <h2 class="wide rv">Three obsessions.</h2>
+    <div class="tri rv">
+      <article><span class="n">01</span><div><h3 class="wide">Building apps</h3><p>I turn ideas into working websites and apps people can open on their phone. Every project teaches me something new.</p></div></article>
+      <article><span class="n">02</span><div><h3 class="wide">Investing</h3><p>I'm learning how markets work, how to read charts and why risk matters. My stock app comes from that curiosity.</p></div></article>
+      <article><span class="n">03</span><div><h3 class="wide">Football</h3><p>Teamwork, discipline and never giving up. Football taught me things I use when I build too.</p></div></article>
+    </div>
+  </div></section>
+
+  <section id="projects" style="padding-top:20px"><div class="wrap">
+    <p class="eyebrow rv">Things I've made</p>
+    <h2 class="wide rv">My apps.</h2>
+    <div class="projects rv">
+      <a class="proj" href="https://build-create-stocks-1.vercel.app" target="_blank" rel="noopener">
+        <span class="i">01</span>
+        <div><h3 class="wide">build.create stocks</h3><p>Add your Indian stock holdings and see profit and loss, a chart summary and a simple outlook, plus daily phone alerts.</p></div>
+        <span class="go">↗</span>
+      </a>
+      <a class="proj" href="https://build-create-cars.vercel.app" target="_blank" rel="noopener">
+        <span class="i">02</span>
+        <div><h3 class="wide">RoadHelp</h3><p>Car broke down? Describe the problem, add a photo and find nearby mechanics, authorized dealers and towing on Google Maps.</p></div>
+        <span class="go">↗</span>
+      </a>
+      <a class="proj" href="#top">
+        <span class="i">03</span>
+        <div><h3 class="wide">build.create</h3><p>My own website company. This site is one of its first projects.</p></div>
+        <span class="go">↑</span>
+      </a>
+    </div>
+    <p class="note rv">The stocks app is for learning and information only. It is not investment advice. Please check with a SEBI-registered adviser before you buy or sell.</p>
+  </div></section>
+
+  <section id="journey" style="padding-top:20px"><div class="wrap">
+    <p class="eyebrow rv">So far</p>
+    <h2 class="wide rv">The journey.</h2>
+    <ol class="steps rv">
+      <li><b>Started build.create</b><span>Began learning to code and building websites.</span></li>
+      <li><b>Built the company website</b><span>My first real project, published for anyone to visit.</span></li>
+      <li><b>Launched the stocks app</b><span>Tracks Indian stocks with alerts on the phone.</span></li>
+      <li><b>Created RoadHelp</b><span>A site that helps drivers find help when their car breaks down.</span></li>
+      <li><b>Next</b><span>More apps, more learning, and many more ideas.</span></li>
+    </ol>
+  </div></section>
+
+  <section id="contact" class="contact"><div class="wrap">
+    <p class="eyebrow rv">Say hello</p>
+    <h2 class="wide rv">Have an idea? Let's build it.</h2>
+    <p class="rv" style="max-width:520px;margin-bottom:32px;color:#cfcdc8">Want a website or app for your business or project? Send me a message.</p>
+    <a class="btn rv" id="mail" href="mailto:Tanaygv@icloud.in?subject=Hello%20Tanay">Email me</a>
+  </div></section>
+</main>
+
+<footer>
+  <img src="logo.jpg" alt="build.create, India, Est 2026">
+  <p>© <span id="yr"></span> Tanay Paliwal · build.create</p>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  document.getElementById('yr').textContent=new Date().getFullYear();
+
+  /* ---- grainy half sun, drawn like the logo ---- */
+  var cv=document.getElementById('sun'),c=cv.getContext('2d');
+  var W=cv.width,H=cv.height,R=W/2-8,cx=W/2,cy=H-6;
+  c.fillStyle='#1c1b1a';
+  c.beginPath();c.arc(cx,cy,R,Math.PI,0);c.closePath();c.fill();
+  c.globalCompositeOperation='destination-out';
+  function sm(a,b,x){x=Math.min(1,Math.max(0,(x-a)/(b-a)));return x*x*(3-2*x)}
+  for(var i=0;i<90000;i++){
+    var r=Math.sqrt(Math.random())*R*1.02,a=Math.random()*Math.PI;
+    var x=Math.cos(a)*r,y=Math.sin(a)*r;           // y = height above the base
+    var u=(x/R)*0.62+(y/R)*0.85+(r/R)*0.25;        // grows toward the upper right
+    var edge=sm(.95,1.02,r/R);
+    var p=Math.max(sm(0.05,1.0,u+(Math.random()-.5)*.35),edge*.5);
+    if(Math.random()<p){
+      c.beginPath();c.arc(cx+x,cy-y,.7+Math.random()*1.5,0,6.283);c.fill();
+    }
+  }
+  c.globalCompositeOperation='source-over';
+
+  /* ---- the cursor lens ---- */
+  var lens=document.getElementById('lens');
+  var fine=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  if(fine){
+    document.body.classList.add('fine');
+    var tx=-200,ty=-200,x=tx,y=ty,sc=0,tsc=0,seen=false;
+    addEventListener('mousemove',function(e){
+      tx=e.clientX;ty=e.clientY;if(!seen){seen=true;x=tx;y=ty}
+      var t=e.target.closest?e.target:document.body;
+      var link=t.closest('a,button,.proj,.btn');
+      lens.classList.toggle('big',!!link);
+      tsc=t.closest('[data-nolens]')?0:1;
+    });
+    document.addEventListener('mouseleave',function(){tsc=0});
+    document.addEventListener('mouseenter',function(){tsc=1});
+    (function loop(){
+      x+=(tx-x)*.18;y+=(ty-y)*.18;sc+=(tsc-sc)*.15;
+      lens.style.transform='translate('+x+'px,'+y+'px) scale('+sc.toFixed(3)+')';
+      requestAnimationFrame(loop);
+    })();
+  }
+
+  /* ---- reveal on scroll ---- */
+  var els=document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+    els.forEach(function(e){io.observe(e)});
+  }else els.forEach(function(e){e.classList.add('in')});
+})();
+</script>
+</body>
+</html>
